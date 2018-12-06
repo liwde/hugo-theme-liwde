@@ -1,0 +1,22 @@
+{{with .Resources.GetMatch "header"}}
+{{$header := .Fill "720x320"}}
+{{$headerX2 := .Fill "1440x640"}}
+<div class="post-image"><img src="{{ $header.RelPermalink }}" srcset="{{ $header.RelPermalink }} 1x, {{ $headerX2.RelPermalink }} 2x"></div>
+{{end}}
+<h1 class="post-title">
+  <a href="{{ .Permalink }}">
+    {{ .Title }}
+  </a>
+</h1>
+{{ with .Params.subtitle }}
+<span class="post-subtitle">
+  {{.}}
+</span>
+{{end}}
+
+<span class="post-meta">
+  {{ if not .Date.IsZero }} {{ .Date.Format "02.01.2006"}} {{end}}
+  {{ with .Params.categories }} &middot; <a href="{{ $.Site.BaseURL }}categories/{{. | urlize}}">{{.}}</a> {{end}}
+  {{ with .Params.series }} &middot; <a href="{{ $.Site.BaseURL }}series/{{. | urlize}}">{{.}}</a> {{end}}
+  {{ if not .Date.IsZero }} &middot; {{.ReadingTime}} min {{end}}
+</span>

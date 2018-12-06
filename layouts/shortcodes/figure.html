@@ -1,0 +1,53 @@
+{{- partial "ensure_lightbox.html" . -}}
+
+{{- $caption := .Get "caption" -}}
+{{- if not (eq (.Get "markdownifyCaption") "off" ) -}}
+    {{- $caption = $caption | markdownify -}}
+{{- end -}}
+
+{{- $scope := .Page.Title -}}
+{{- $src := .Get "src" -}}
+{{- $original := .Page.Resources.GetMatch $src }}
+
+{{- $resized := "" -}}
+{{- $resizedX2 := "" -}}
+{{- if isset .Params "option" -}}
+    {{- $resized = $original.Resize (.Get "option") -}}
+{{- else -}}
+    {{- $resized = $original.Resize "300x" -}}
+{{- end -}}
+{{- if isset .Params "optionX2" -}}
+    {{- $resizedX2 = $original.Resize (.Get "optionX2") }}
+{{- else -}}
+    {{- $resizedX2 = $original.Resize "600x" }}
+{{- end }}
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+    {{- if .Get "link" }}
+        <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+    {{- else }}
+        <a href="{{ $original.RelPermalink }}" data-lightbox="{{ $scope | plainify }}" data-title="{{ $caption | plainify }}">
+    {{- end }}
+    <img src="{{ $resized.RelPermalink }}" srcset="{{ $resized.RelPermalink }} 1x, {{ $resizedX2.RelPermalink }} 2x"
+         {{- if or (.Get "alt") (.Get "caption") }}
+         alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
+         {{- end -}}
+         {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+         {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+    />
+    </a>
+    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+        <figcaption>
+            {{ with (.Get "title") -}}
+                <h4>{{ . }}</h4>
+            {{- end -}}
+            {{- if or (.Get "caption") (.Get "attr") -}}<p>
+                {{- $caption -}}
+                {{- with .Get "attrlink" -}}
+                    <a href="{{ . }}">
+                {{- end -}}
+                {{- .Get "attr" | markdownify -}}
+                {{- if .Get "attrlink" }}</a>{{ end }}</p>
+            {{- end }}
+        </figcaption>
+    {{- end }}
+</figure>

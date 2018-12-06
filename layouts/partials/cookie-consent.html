@@ -1,0 +1,24 @@
+{{- $script := resources.Get "js/cookieconsent.min.js" -}}
+<script defer src="{{ $script.Permalink }}"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "{{ $.Scratch.Get "themeColor" }}",
+      "text": "#ffffff"
+    }
+  },
+  "theme": "edgeless",
+  "content": {
+    "message": "{{ .Site.Params.cookieConsentMessage }}",
+    "dismiss": "OK",
+    "link": "Mehr Informationen",
+    "href": "{{ .Site.Params.cookieConsentPolicyLink }}"
+  }
+})});
+</script>

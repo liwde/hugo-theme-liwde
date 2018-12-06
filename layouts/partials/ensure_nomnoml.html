@@ -1,0 +1,21 @@
+{{- if not (.Page.Scratch.Get "loaded_nomnoml") -}}
+{{- $lodash := resources.Get "js/lodash.min.js" -}}
+<script defer src="{{ $lodash.Permalink }}"></script>
+{{- $dagre := resources.Get "js/dagre.min.js" -}}
+<script defer src="{{ $dagre.Permalink }}"></script>
+{{- $nomnoml := resources.Get "js/nomnoml.js" | resources.Minify -}}
+<script defer src="{{ $nomnoml.Permalink }}"></script>
+<script>
+window.iZoomCount = 0;
+function toggleNomnoml(id) {
+    var figure = document.getElementById("nomnoml-figure-"+id);
+    var bZoomed = figure.getAttribute("class") === "umlZoom";
+    if (!bZoomed) window.iZoomCount--;
+    else window.iZoomCount++;
+    figure.setAttribute("class", bZoomed ? "umlScroll" : "umlZoom");
+    figure.setAttribute("style", bZoomed ? "cursor: zoom-out" : "cursor: zoom-in");
+    document.getElementById("aside").setAttribute("style", (window.iZoomCount > 0) ? "display: none;" : "");
+}
+</script>
+{{- .Page.Scratch.Set "loaded_nomnoml" true -}}
+{{- end -}}

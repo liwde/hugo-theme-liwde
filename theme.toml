@@ -1,0 +1,21 @@
+name = "liwde"
+license = "MIT"
+licenselink = "https://github.com/spf13/hyde/blob/master/LICENSE.md"
+description = "An elegant open source and mobile first theme"
+tags = ["blog"]
+features = ["blog", "themes"]
+min_version = 0.52
+
+[author]
+    name = "liwde"
+    homepage = "http://www.liwde.de"
+
+# If Porting existing theme
+[original]
+    author =  "Steve Francia"
+    homepage = "https://github.com/spf13/"
+    repo = "https://github.com/spf13/hyde/"
+#[original]
+#    author =  "Mark Otto"
+#    homepage = "http://markdotto.com/"
+#    repo = "https://www.github.com/mdo/hyde"

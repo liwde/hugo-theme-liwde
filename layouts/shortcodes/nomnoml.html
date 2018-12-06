@@ -1,0 +1,39 @@
+{{- partial "ensure_nomnoml.html" . -}}
+{{- .Page.Scratch.Add "nomnoml_auto_x" 1 -}}
+{{- $x := .Page.Scratch.Get "nomnoml_auto_x" -}}
+
+{{- $caption := .Get "caption" -}}
+{{- if not (eq (.Get "markdownifyCaption") "off" ) -}}
+    {{- $caption = $caption | markdownify -}}
+{{- end -}}
+
+<figure id="nomnoml-figure-{{$x}}" class="{{ with .Get "class" }}{{ . }}{{ else }}umlZoom{{ end }}"{{ if .Get "zoomable"}} style="cursor: zoom-in;" onclick="toggleNomnoml({{$x}})"{{ end }}>
+    {{- if .Get "link" }}
+        <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+    {{- end }}
+    <canvas id="nomnoml-{{$x}}">{{ .Inner }}</canvas>
+    {{- if .Get "link" }}
+        </a>
+    {{- end }}
+    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+        <figcaption>
+            {{ with (.Get "title") -}}
+                <h4>{{ . }}</h4>
+            {{- end -}}
+            {{- if or (.Get "caption") (.Get "attr") -}}<p>
+                {{- $caption -}}
+                {{- with .Get "attrlink" -}}
+                    <a href="{{ . }}">
+                {{- end -}}
+                {{- .Get "attr" | markdownify -}}
+                {{- if .Get "attrlink" }}</a>{{ end }}</p>
+            {{- end }}
+        </figcaption>
+    {{- end }}
+</figure>
+    
+<script>
+window.addEventListener("load", function() {
+    nomnoml.draw(document.getElementById("nomnoml-{{$x}}"), "{{ .Inner }}");
+});
+</script>

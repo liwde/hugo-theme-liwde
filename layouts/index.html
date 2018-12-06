@@ -1,0 +1,26 @@
+{{ define "title" }}
+  {{- .Site.Title -}}
+  {{- $paginator := .Paginate (where .Data.Pages "Type" "posts") -}}
+  {{- if $paginator.HasPrev}} &middot; Seite {{ $paginator.PageNumber }}{{ end -}}
+{{ end }}
+{{ define "main" }}
+  <div class="posts">
+    {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}
+    {{ range $paginator.Pages }}
+    <article class="post">
+      {{ partial "post-head.html" . }}
+      {{ if .Params.summary }}
+        {{ .Summary }}
+        <div>
+          <a href="{{ .Permalink }}">alles →</a>
+        </div>
+      {{ else }}
+        {{ .Content }}
+        {{ partial "endmatter.html" . }}
+      {{ end }}
+    </article>
+    {{ end }}
+
+    {{ template "_internal/pagination.html" . }}
+  </div>
+{{ end }}

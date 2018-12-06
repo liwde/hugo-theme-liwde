@@ -1,0 +1,4 @@
+{{- partial "ensure_mermaid.html" . -}}
+{{- with .Inner }}
+<div class="mermaid">{{.}}</div>
+{{- end -}}

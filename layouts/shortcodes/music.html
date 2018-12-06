@@ -1,0 +1,11 @@
+{{- partial "ensure_abcjs.html" . -}}
+{{- .Page.Scratch.Add "abcjs_auto_x" 1 -}}
+{{- $x := .Page.Scratch.Get "abcjs_auto_x" -}}
+{{- with .Inner }}
+<div id="abcjs-{{$x}}"></div>
+<script>
+window.addEventListener("load", function() {
+    ABCJS.renderAbc("abcjs-{{$x}}", "X: {{$x}}{{.}}", {staffwidth: 690, responsive: "resize"});
+});
+</script>
+{{- end -}}

@@ -1,0 +1,248 @@
+/*
+ * Post Styling
+ */
+
+h1.post-title {
+  font-size: 2.75rem;
+  line-height: 105%;
+}
+
+div.post-image {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  padding: 44.44% 0 0 0;
+  border-radius: 5px;
+  margin-bottom: .5rem;
+}
+div.post-image img {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0px;
+}
+
+div.footnotes {
+  font-size: .7rem;
+}
+
+span.post-subtitle {
+  font-style: italic;
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: .5rem;
+  line-height: 110%;
+}
+span.post-meta a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+/*
+ * Post-List Styling
+ */
+.post-list li {
+  line-height: 1.2rem;
+  margin-bottom: .8rem;
+}
+.post-list a {
+  font-size: 1.3rem;
+}
+.post-list span.subtitle-list {
+  font-style: italic;
+}
+.post-list span.meta {
+  color: #9a9a9a;
+}
+
+/*
+ * Pagination Styling
+ */
+.pagination {
+    list-style: none;
+}
+.pagination li {
+      display: inline-block;
+}
+.pagination li {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination li.active {
+    color: white;
+}
+
+.pagination li:hover:not(.active):not(.disabled) {
+  background-color: #ddd;
+}
+.pagination a:hover {
+  text-decoration: none;
+}
+.pagination li.active a {
+  color: white;
+}
+.pagination li.disabled a {
+  color: #ddd;
+  cursor: default;
+}
+
+/*
+ * Photoset Styling
+ * https://medium.com/coding-design/responsive-photosets-7742e6f93d9e
+ */
+.photoset {
+  overflow: hidden;
+  width: 100%;
+}
+/* Rows */
+.photoset .photoset-row {
+  margin-bottom: .5rem;
+  overflow: hidden;
+  width: 150%; /* See comment after code for reason */
+}
+.photoset .photoset-row:last-child { margin: 0; }
+/* Images on each row, known as an "item" */
+.photoset .photoset-item {
+  display: block;
+  float: left;
+  margin: 0 .25rem;
+}
+.photoset .photoset-item:first-child { margin-left: 0; }
+.photoset .photoset-item:last-child  { margin-right: 0; }
+/* Images and captions are contained within <figure> */
+.photoset figure {
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  /*width: 100%;*/
+  height: 100%;
+}
+.photoset figcaption {
+  background-color: rgba(255, 255, 255, .75);
+  box-sizing: border-box;
+  font-size: .75rem;
+  padding: .5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+}
+.photoset figure:hover figcaption {
+  opacity: 100;
+}
+.photoset img {
+  display: block;
+  max-width: 100%;
+  transition: all .125s ease-in-out;
+}
+
+/*
+ * Figure Styling
+ */
+figure.float-left, figure.float-right {
+  max-width: 300px;
+}
+figure.float-left {
+  float: left;
+  margin-left: 0;
+}
+figure.float-right {
+  float: right;
+  margin-right: 0;
+}
+@media (max-width: 470px) {
+  figure.float-left, figure.float-right {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+figure figcaption {
+  font-style: italic;
+  margin-top: -.75rem;
+}
+
+/*
+ * Responsive Sidebar
+ */
+.sidebar-nav li {
+  display: inline;
+}
+.sidebar-nav li:not(:first-child):before {
+  content: " | ";
+}
+.sidebar .impressum {
+  display: none;
+}
+@media (min-width: 48em) {
+  .sidebar-nav li {
+    display: block;
+  }
+  .sidebar-nav li:not(:first-child):before {
+    content: "";
+  }
+  .sidebar .impressum {
+    display: block;
+  }
+}
+
+/*
+ * About Avatar
+ */
+img.avatar {
+  border-radius: 50%;
+  width: calc(100% - 40px);
+  margin: 0px auto -30px auto;
+  max-width: 200px;
+  @media (min-width: 440px) {
+    float: left;
+    width: 150px;
+    margin: 50px 25px;
+  }
+}
+
+/*
+ * UML Figures
+ */
+figure.umlZoom > canvas {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+figure.umlScroll {
+  // nothing
+}
+figure > canvas {
+  margin-bottom: .8em;
+}
+
+/*
+ * Aside Container
+ */
+div.aside {
+  position: fixed;
+  margin-left: 65em;
+  max-width: 20em;
+}
+@media (max-width: 1600px) {
+  div.aside {
+    display: none;
+  }
+}
+div.aside > nav ul {
+  margin-bottom: .2rem;
+  list-style: disc;
+  font-size: 17px;
+}
+div.aside > nav ul a {
+}

@@ -1,0 +1,6 @@
+{{- if not (.Page.Scratch.Get "loaded_photoset") -}}
+{{- partial "ensure_lightbox.html" . -}}
+{{- $script := resources.Get "js/photoset.js" | resources.Minify -}}
+<script defer src="{{ $script.Permalink }}"></script>
+{{- .Page.Scratch.Set "loaded_photoset" true -}}
+{{- end -}}

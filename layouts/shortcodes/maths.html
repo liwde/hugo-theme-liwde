@@ -1,0 +1,3 @@
+{{- partial "ensure_katex.html" . }}
+{{ with .Inner }}$${{ . }}$${{ end }}
+{{ with .Get 0 }}\({{ . }}\){{ end }}

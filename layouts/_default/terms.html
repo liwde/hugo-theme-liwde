@@ -1,0 +1,22 @@
+{{ define "title" }}
+  {{.Title}} &middot; {{ .Site.Title }}
+{{ end }}
+{{ define "main" }}
+  <h1 class="post-title">
+    <a href="{{ .Permalink }}">
+      {{.Title}}
+    </a>
+  </h1>
+  {{- with .Content }}
+  <article>
+    {{ . }}
+  </article>
+  {{- end }}
+  <ul class="posts">
+    {{- range .Data.Pages.ByTitle }}
+      <li>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </li>
+    {{- end }}
+  </ul>
+{{ end }}

@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <article class="post">
+    {{ partial "post-head.html" . }}
+    {{ .Content }}
+    {{ partial "endmatter.html" . }}
+    {{ if not .Date.IsZero }} {{ partial "related.html" . }} {{end}}
+  </article>
+{{ end }}
+{{ define "aside" }}
+  {{- $minWordCount := 1000 -}}
+  {{- with $.Site.Params.minWordCountForToC -}}
+    {{- $minWordCount = . -}}
+  {{- end -}}
+  {{- if or (eq .Params.showToc true) (and (ge .WordCount $.Site.Params.minWordCountForToC) (not (eq .Params.showToc false))) -}}
+    {{- with .TableOfContents }}
+      <h4>Navigation</h4>
+      {{.}}
+    {{- end -}}
+  {{- end -}}
+{{ end }}

@@ -1,0 +1,9 @@
+{{- if not (.Page.Scratch.Get "loaded_katex") -}}
+{{- $script := resources.Get "js/katex.min.js" -}}
+<script defer src="{{ $script.Permalink }}"></script>
+{{- $scriptRender := resources.Get "js/katex-auto-render.min.js" -}}
+<script defer src="{{ $scriptRender.Permalink }}" onload="renderMathInElement(document.body);"></script>
+{{- $style := resources.Get "css/katex.min.css" -}}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+{{- .Page.Scratch.Set "loaded_katex" true -}}
+{{- end -}}

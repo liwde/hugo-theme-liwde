@@ -1,0 +1,22 @@
+<meta name="twitter:title" content="{{ .Title }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta name="twitter:description" content='{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary | plainify | replaceRE "[\n\r]" " " }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}'>
+<meta property="og:description" content='{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary | plainify | replaceRE "[\n\r]" " " }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}'>
+
+{{if .IsPage}}
+{{with .Resources.GetMatch "header"}}
+{{$header := .Fill "720x320"}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ $header.Permalink }}">
+<meta property="og:image" content="{{ $header.Permalink }}">
+{{else}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="{{ .Site.BaseURL }}mstile-144x144.png">
+<meta property="og:image" content="{{ .Site.BaseURL }}mstile-144x144.png">
+{{end}}
+{{else}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="{{ .Site.BaseURL }}mstile-144x144.png">
+<meta property="og:image" content="{{ .Site.BaseURL }}mstile-144x144.png">
+{{end}}

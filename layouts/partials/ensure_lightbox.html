@@ -1,0 +1,8 @@
+{{- if not (.Page.Scratch.Get "loaded_lightbox") -}}
+{{- partial "ensure_jquery.html" . -}}
+{{- $script := resources.Get "js/lightbox.min.js" -}}
+<script defer src="{{ $script.Permalink }}" onload="lightbox.option({'albumLabel': 'Bild %1 von %2','wrapAround': true});"></script>
+{{- $style := resources.Get "css/lightbox.min.css" -}}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+{{- .Page.Scratch.Set "loaded_lightbox" true -}}
+{{- end -}}

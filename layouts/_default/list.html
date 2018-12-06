@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <h1 class="post-title">
+    <a href="{{ .Permalink }}">
+      {{ .Title }}
+    </a>
+  </h1>
+  {{- with .Content }}
+  <article>
+    {{ . }}
+  </article>
+  {{- end }}
+  <ul class="post-list">
+    {{- range .Data.Pages }}
+      <li>
+        <span>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          {{- if isset .Params "subtitle" }}<br><span class="subtitle-list">{{ .Params.subtitle }}</span>{{ end -}}
+          {{- if not .Date.IsZero }}<br><span class="meta"><time>{{ .Date.Format "02.01.2006" }}</time> &middot; {{ .ReadingTime }} min</span>{{ end }}
+        </span>
+      </li>
+    {{- end }}
+  </ul>
+{{ end }}

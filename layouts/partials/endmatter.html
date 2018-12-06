@@ -1,0 +1,32 @@
+{{ $.Scratch.Set "endmatter" "dont" }}
+{{range .Resources.ByType "image"}}
+  {{with .Params}}{{if .author}}
+    {{ $.Scratch.Set "endmatter" "show" }}
+  {{end}}{{end}}
+{{end}}
+{{with .Params.neologismus}}{{ $.Scratch.Set "endmatter" "show" }}{{end}}
+{{with .Params.endmatterText}}{{ $.Scratch.Set "endmatter" "show" }}{{end}}
+
+{{if eq ($.Scratch.Get "endmatter") "show"}}
+<div class="footnotes">
+  <hr>
+  {{range .Resources.ByType "image"}}
+    {{with .Params}}
+      {{if .author}}
+      <div>
+          {{if .title}}{{.title}}{{else}}Titelbild{{end}}: <a href="{{.link}}" target="_blank">{{.author}}</a>
+        <a href="https://creativecommons.org/licenses/{{replace .license " " "/"}}" target="_blank">(CC {{upper .license}})</a>
+      </div>
+      {{end}}
+    {{end}}
+  {{end}}
+
+  {{with .Params.neologismus}}
+  <div>Ebenfalls erschienen im <a href="https://www.neologismus-magazin.de/issue.php?i={{.}}" target="_blank">Neologismus {{.}}</a></div>
+  {{end}}
+
+  {{with .Params.endmatterText}}
+  <div>{{. | safeHTML}}</div>
+  {{end}}
+</div>
+{{end}}

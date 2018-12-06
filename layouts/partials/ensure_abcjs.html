@@ -1,0 +1,6 @@
+{{- if not (.Page.Scratch.Get "loaded_abcjs") -}}
+{{- $script := resources.Get "js/abcjs_basic_5.2.0-min.js" -}}
+<script defer src="{{ $script.Permalink }}"></script>
+{{- .Page.Scratch.Set "loaded_abcjs" true -}}
+{{- .Page.Scratch.Set "abcjs_auto_x" 0 -}}
+{{- end -}}
