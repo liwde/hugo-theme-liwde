@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
       }
     },
     "theme": "edgeless",
-    "type": "opt-in",
+    {{ if ne .Site.Params.cookieConsentOptIn false }}"type": "opt-in",{{ end }}
     onStatusChange: function(status) {
       if (this.hasConsented()) {
         _paq.push(['rememberConsentGiven']);
@@ -25,6 +25,7 @@ window.addEventListener("load", function() {
     "content": {
       "message": "{{ .Site.Params.cookieConsentMessage }}",
       "allow": "OK",
+      "dismiss": "OK",
       "deny": "Ablehnen",
       "policy": "Tracking",
       "link": "Mehr Informationen",
