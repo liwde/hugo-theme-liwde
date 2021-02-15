@@ -1,0 +1,143 @@
+@media screen and (prefers-color-scheme: dark) {
+    /*
+    .sidebar,
+    .pagination li.active {
+        background-color: $themeColor;
+    }
+    code,
+    .content a,
+    .related-posts li a:hover {
+        color: $themeColor;
+    }
+    */
+    body {
+        color: #eee;
+        background-color: #222;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #ddd;
+    }
+    strong {
+        color: #ddd;
+    }
+
+    hr {
+        border-top-color: #111;
+        background-color: #000;
+        color: #000;
+    }
+    abbr {
+        color: #bbb;
+    }
+    abbr[title] {
+        border-bottom-color: #111;
+    }
+
+    code, pre {
+        background-color: #000;
+        color: #fff;
+    }
+    blockquote {
+        color: #bbb;
+        border-left-color: #151515;
+    }
+
+    table {
+        border-color: 1px solid #151515;
+    }
+    td,
+    th {
+        border-color: #151515;
+    }
+    tbody tr:nth-child(odd) td,
+    tbody tr:nth-child(odd) th {
+        background-color: #191919;
+    }
+
+    .message {
+        color: #999;
+        background-color: #010101;
+    }
+
+    .pagination li {
+        color: #eee;
+    }
+    .pagination li.active {
+        color: #000;
+    }
+    .pagination li:hover:not(.active):not(.disabled) {
+      background-color: #000;
+    }
+
+    /*
+        Name:       Base16 Default Dark
+        Author:     Chris Kempson (http://chriskempson.com)
+        Pygments template by Jan T. Sott (https://github.com/idleberg)
+        Created with Base16 Builder by Chris Kempson (https://github.com/chriskempson/base16-builder)
+    */
+    .highlight .hll { background-color: #303030 }
+    .highlight  { background: #151515; color: #f5f5f5 }
+    .highlight .c { color: #505050 !important } /*Comment */
+    .highlight .err { color: #ac4142 !important } /*Error */
+    .highlight .k { color: #aa759f !important } /*Keyword */
+    .highlight .l { color: #d28445 !important } /*Literal */
+    .highlight .n { color: #f5f5f5 !important } /*Name */
+    .highlight .o { color: #75b5aa !important } /*Operator */
+    .highlight .p { color: #f5f5f5 !important } /*Punctuation */
+    .highlight .cm { color: #505050 !important } /*Comment.Multiline */
+    .highlight .cp { color: #505050 !important } /*Comment.Preproc */
+    .highlight .c1 { color: #505050 !important } /*Comment.Single */
+    .highlight .cs { color: #505050 !important } /*Comment.Special */
+    .highlight .gd { color: #ac4142 !important } /*Generic.Deleted */
+    .highlight .ge { font-style: italic !important } /*Generic.Emph */
+    .highlight .gh { color: #f5f5f5; font-weight: bold !important } /*Generic.Heading */
+    .highlight .gi { color: #90a959 !important } /*Generic.Inserted */
+    .highlight .gp { color: #505050; font-weight: bold !important } /*Generic.Prompt */
+    .highlight .gs { font-weight: bold !important } /*Generic.Strong */
+    .highlight .gu { color: #75b5aa; font-weight: bold !important } /*Generic.Subheading */
+    .highlight .kc { color: #aa759f !important } /*Keyword.Constant */
+    .highlight .kd { color: #aa759f !important } /*Keyword.Declaration */
+    .highlight .kn { color: #75b5aa !important } /*Keyword.Namespace */
+    .highlight .kp { color: #aa759f !important } /*Keyword.Pseudo */
+    .highlight .kr { color: #aa759f !important } /*Keyword.Reserved */
+    .highlight .kt { color: #f4bf75 !important } /*Keyword.Type */
+    .highlight .ld { color: #90a959 !important } /*Literal.Date */
+    .highlight .m { color: #d28445 !important } /*Literal.Number */
+    .highlight .s { color: #90a959 !important } /*Literal.String */
+    .highlight .na { color: #6a9fb5 !important } /*Name.Attribute */
+    .highlight .nb { color: #f5f5f5 !important } /*Name.Builtin */
+    .highlight .nc { color: #f4bf75 !important } /*Name.Class */
+    .highlight .no { color: #ac4142 !important } /*Name.Constant */
+    .highlight .nd { color: #75b5aa !important } /*Name.Decorator */
+    .highlight .ni { color: #f5f5f5 !important } /*Name.Entity */
+    .highlight .ne { color: #ac4142 !important } /*Name.Exception */
+    .highlight .nf { color: #6a9fb5 !important } /*Name.Function */
+    .highlight .nl { color: #f5f5f5 !important } /*Name.Label */
+    .highlight .nn { color: #f4bf75 !important } /*Name.Namespace */
+    .highlight .nx { color: #6a9fb5 !important } /*Name.Other */
+    .highlight .py { color: #f5f5f5 !important } /*Name.Property */
+    .highlight .nt { color: #75b5aa !important } /*Name.Tag */
+    .highlight .nv { color: #ac4142 !important } /*Name.Variable */
+    .highlight .ow { color: #75b5aa !important } /*Operator.Word */
+    .highlight .w { color: #f5f5f5 !important } /*Text.Whitespace */
+    .highlight .mf { color: #d28445 !important } /*Literal.Number.Float */
+    .highlight .mh { color: #d28445 !important } /*Literal.Number.Hex */
+    .highlight .mi { color: #d28445 !important } /*Literal.Number.Integer */
+    .highlight .mo { color: #d28445 !important } /*Literal.Number.Oct */
+    .highlight .sb { color: #90a959 !important } /*Literal.String.Backtick */
+    .highlight .sc { color: #f5f5f5 !important } /*Literal.String.Char */
+    .highlight .sd { color: #505050 !important } /*Literal.String.Doc */
+    .highlight .s2 { color: #90a959 !important } /*Literal.String.Double */
+    .highlight .se { color: #d28445 !important } /*Literal.String.Escape */
+    .highlight .sh { color: #90a959 !important } /*Literal.String.Heredoc */
+    .highlight .si { color: #d28445 !important } /*Literal.String.Interpol */
+    .highlight .sx { color: #90a959 !important } /*Literal.String.Other */
+    .highlight .sr { color: #90a959 !important } /*Literal.String.Regex */
+    .highlight .s1 { color: #90a959 !important } /*Literal.String.Single */
+    .highlight .ss { color: #90a959 !important } /*Literal.String.Symbol */
+    .highlight .bp { color: #f5f5f5 !important } /*Name.Builtin.Pseudo */
+    .highlight .vc { color: #ac4142 !important } /*Name.Variable.Class */
+    .highlight .vg { color: #ac4142 !important } /*Name.Variable.Global */
+    .highlight .vi { color: #ac4142 !important } /*Name.Variable.Instance */
+    .highlight .il { color: #d28445 !important } /*Literal.Number.Integer.Long */
+}

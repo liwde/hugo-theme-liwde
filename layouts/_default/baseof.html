@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  {{ .Hugo.Generator }}
+  {{ hugo.Generator }}
   <meta name="author" content="Lukas Heimann">
 
   <!-- Enable responsiveness on mobile devices-->
@@ -11,7 +11,7 @@
 
   <!-- CSS -->
   {{- partial "compute-theme" . -}}
-  {{- $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "style.main.scss" . | resources.ToCSS | resources.Minify -}}
+  {{- $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "style.main.scss" . | toCSS | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $style.Permalink }}">
 
   {{ with $.Scratch.Get "themeColor" }}<meta name="theme-color" content="{{ . }}">{{ end }}

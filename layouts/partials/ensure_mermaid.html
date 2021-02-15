@@ -1,0 +1,5 @@
+{{- if not (.Page.Scratch.Get "loaded_mermaid") -}}
+{{- $script := resources.Get "js/mermaid.min.js" -}}
+<script defer src="{{ $script.Permalink }}" onload="mermaid.initialize({startOnLoad: true, theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'neutral'});"></script>
+{{- .Page.Scratch.Set "loaded_mermaid" true -}}
+{{- end -}}

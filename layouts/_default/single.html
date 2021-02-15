@@ -7,11 +7,7 @@
   </article>
 {{ end }}
 {{ define "aside" }}
-  {{- $minWordCount := 1000 -}}
-  {{- with $.Site.Params.minWordCountForToC -}}
-    {{- $minWordCount = . -}}
-  {{- end -}}
-  {{- if or (eq .Params.showToc true) (and (ge .WordCount $.Site.Params.minWordCountForToC) (not (eq .Params.showToc false))) -}}
+  {{- if and (or (eq .Params.showToc true) (and (ge .WordCount $.Site.Params.minWordCountForToC | default 1000) (not (eq .Params.showToc false)))) (gt (len .TableOfContents) 32) -}}
     {{- with .TableOfContents }}
       <h4>Navigation</h4>
       {{.}}

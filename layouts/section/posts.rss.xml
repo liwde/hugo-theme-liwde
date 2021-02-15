@@ -1,3 +1,4 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>" | safeHTML }}
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} · {{ end }}{{ .Site.Title }}{{ end }}</title>
   <link href="{{ .Permalink }}index.xml" rel="self"/>
@@ -17,6 +18,6 @@
     </author>
     <published>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</published>
     <updated>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
-    <content type="html">{{if .Params.subtitle}}&lt;em&gt;{{.Params.subtitle | html}}&lt;/em&gt;&lt;br /&gt;{{end}}{{with .Resources.GetMatch "header"}}{{$header := .Fill "720x320"}}&lt;img class="webfeedsFeaturedVisual" src="{{$header.Permalink}}" /&gt;{{end}}{{if .Params.summary}}{{.Summary | html}}{{else}}{{.Content | html}}{{end}}</content>
+    <content type="html">{{if .Params.subtitle}}&lt;em&gt;{{.Params.subtitle | html}}&lt;/em&gt;&lt;br /&gt;{{end}}{{with .Resources.GetMatch "header"}}{{$header := .Fill "720x320"}}&lt;img class="webfeedsFeaturedVisual" src="{{$header.Permalink}}" /&gt;{{end}}{{if .Params.showSummary}}{{.Summary | html}}{{else}}{{.Content | html}}{{end}}</content>
   </entry>{{ end }}
 </feed>

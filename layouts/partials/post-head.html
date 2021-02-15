@@ -1,8 +1,9 @@
-{{with .Resources.GetMatch "header"}}
-{{$header := .Fill "720x320"}}
-{{$headerX2 := .Fill "1440x640"}}
+{{with .Resources.GetMatch "header" -}}
+{{- $header := .Fill "720x320" -}}
+{{- $headerX2 := .Fill "1440x640" -}}
 <div class="post-image"><img src="{{ $header.RelPermalink }}" srcset="{{ $header.RelPermalink }} 1x, {{ $headerX2.RelPermalink }} 2x"></div>
-{{end}}
+{{- end }}
+{{- $pageid := .File.UniqueID -}}
 <h1 class="post-title">
   <a href="{{ .Permalink }}">
     {{ .Title }}
@@ -19,4 +20,10 @@
   {{ with .Params.categories }} &middot; <a href="{{ $.Site.BaseURL }}categories/{{. | urlize}}">{{.}}</a> {{end}}
   {{ with .Params.series }} &middot; <a href="{{ $.Site.BaseURL }}series/{{. | urlize}}">{{.}}</a> {{end}}
   {{ if not .Date.IsZero }} &middot; {{.ReadingTime}} min {{end}}
+  {{- with .Resources.GetMatch "audio" }} &middot; <input id="audio-toggle-{{ $pageid }}" class="hidden-checkbox" type="checkbox" ><label for="audio-toggle-{{ $pageid }}"><img src="/img/speaker.svg"></a></label>{{end}}
+  {{- with .Resources.GetMatch "audio" }}
+  <audio controls preload="none">
+    <source src="{{ .RelPermalink }}" type="{{.MediaType}}">
+  </audio>
+  {{- end }}
 </span>

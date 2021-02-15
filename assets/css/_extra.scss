@@ -27,8 +27,48 @@ div.post-image img {
   border-radius: 0px;
 }
 
-div.footnotes {
+article.audio {
+  margin-bottom: 2rem;
+  h2 {
+    margin-bottom: 0;
+  }
+  audio {
+    margin-top: 10px;
+    width: 100%;
+    @media (min-width: 48em) {
+      width: calc(100% - 180px);
+    }
+  }
+}
+
+img.audio-image, svg.audio-image {
+  width: 80px;
+  height: 80px;
+  float: left;
+  border-radius: 5px;
+  margin-right: 20px;
+  @media (min-width: 48em) {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+.button {
+  border: none;
+  color: white !important;
+  background-color: $themeColor;
+  padding: 10px;
+}
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  text-decoration: none !important;
+}
+
+.footnotes {
   font-size: .7rem;
+}
+.footnotes p {
+  margin: 0;
 }
 
 span.post-subtitle {
@@ -42,6 +82,24 @@ span.post-meta a {
   color: inherit !important;
   text-decoration: none;
 }
+span.post-meta label img {
+  height: 1.2em;
+  vertical-align: middle;
+  display: inline;
+  margin: 0;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+span.post-meta .hidden-checkbox {
+  display: none;
+}
+span.post-meta audio {
+  display: none;
+  width: 100%;
+}
+span.post-meta .hidden-checkbox:checked ~ audio {
+  display: block;
+}
 
 /*
  * Post-List Styling
@@ -53,11 +111,15 @@ span.post-meta a {
 .post-list a {
   font-size: 1.3rem;
 }
-.post-list span.subtitle-list {
+.post-list span.subtitle-list, .audio span.subtitle-list {
+  display: block;
+  margin: 0;
   font-style: italic;
 }
-.post-list span.meta {
+.post-list span.meta, .audio span.meta {
+  display: block;
   color: #9a9a9a;
+  margin: 0;
 }
 
 /*

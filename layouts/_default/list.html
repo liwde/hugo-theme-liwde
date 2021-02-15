@@ -15,7 +15,7 @@
         <span>
           <a href="{{ .Permalink }}">{{ .Title }}</a>
           {{- if isset .Params "subtitle" }}<br><span class="subtitle-list">{{ .Params.subtitle }}</span>{{ end -}}
-          {{- if not .Date.IsZero }}<br><span class="meta"><time>{{ .Date.Format "02.01.2006" }}</time> &middot; {{ .ReadingTime }} min</span>{{ end }}
+          {{- if not .Date.IsZero }}<span class="meta"><time>{{ .Date.Format "02.01.2006" }}</time> &middot; {{ .ReadingTime }} min</span>{{ end }}
         </span>
       </li>
     {{- end }}

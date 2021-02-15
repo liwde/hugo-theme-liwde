@@ -1,24 +1,50 @@
 {{- $script := resources.Get "js/cookieconsent.min.js" -}}
 <script defer src="{{ $script.Permalink }}"></script>
 <script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#edeff5",
-      "text": "#838391"
+window.addEventListener("load", function() {
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#edeff5",
+        "text": "#838391"
+      },
+      "button": {
+        "background": "{{ $.Scratch.Get "themeColor" }}",
+        "text": "#ffffff"
+      }
     },
-    "button": {
-      "background": "{{ $.Scratch.Get "themeColor" }}",
-      "text": "#ffffff"
+    "theme": "edgeless",
+    "type": "opt-in",
+    onStatusChange: function(status) {
+      if (this.hasConsented()) {
+        _paq.push(['rememberConsentGiven']);
+      } else {
+        _paq.push(['forgetConsentGiven']);
+      }
+    },
+    "content": {
+      "message": "{{ .Site.Params.cookieConsentMessage }}",
+      "allow": "OK",
+      "deny": "Ablehnen",
+      "policy": "Tracking",
+      "link": "Mehr Informationen",
+      "href": "{{ .Site.Params.cookieConsentPolicyLink }}"
     }
-  },
-  "theme": "edgeless",
-  "content": {
-    "message": "{{ .Site.Params.cookieConsentMessage }}",
-    "dismiss": "OK",
-    "link": "Mehr Informationen",
-    "href": "{{ .Site.Params.cookieConsentPolicyLink }}"
+  });
+
+  // On mobile, hide the button on scrolling down
+  const revokeButton = document.getElementsByClassName("cc-revoke")[0];
+  if (!revokeButton.classList.contains("cc-animate")) {
+    let prevScrollPos = window.pageYOffset;
+    window.addEventListener("scroll", function() {
+      let currentScrollPos = window.pageYOffset;
+      if (prevScrollPos > currentScrollPos) {
+        revokeButton.classList.remove("cc-animate");
+      } else {
+        revokeButton.classList.add("cc-animate");
+      }
+      prevScrollPos = currentScrollPos;
+    }, { passive: true });
   }
-})});
+});
 </script>

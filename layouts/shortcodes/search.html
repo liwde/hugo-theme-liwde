@@ -16,13 +16,16 @@
 <h3>Suchergebnisse</h3>
 <div id="search-results" class="post-list">
 </div>
+<noscript>
+    Bitte aktiviere JavaScript, um die Suche nutzen zu können!
+</noscript>
 <!-- this template is sucked in by search.js and appended to the search-results div above. So editing here will adjust style -->
 <script id="search-result-template" type="text/x-js-template">
     <div id="summary-${key}">
     <a href="${link}">${title}</a>
-    ${ isset subtitle }<br><span class="subtitle-list">${subtitle}</span>${ end }
-    ${ isset categories }<br><span class="meta">${categories}</span>${ end }
-    ${ isset series }<span class="meta"> &middot; ${series}</span>${ end }
+    ${ isset subtitle }<span class="subtitle-list">${subtitle}</span>${ end }
+    <span class="meta">${ isset categories }${categories}${ end }
+    ${ isset series } &middot; ${series}${ end }</span>
     <p>${snippet}</p>
     </div>
 </script>

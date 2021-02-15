@@ -3,6 +3,7 @@ $themeColor: {{ $.Scratch.Get "themeColor" | default "theme-base-09" }};
 @import "poole";
 @import "hyde";
 @import "extra";
+@import "dark";
 
 @media print {
     @import "print";

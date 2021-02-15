@@ -1,0 +1,44 @@
+{{ define "title" }}
+  {{- .Site.Title -}}
+  {{- $paginator := .Paginate (sort .Data.Pages ".Params.dateRecorded" "desc") -}}
+  {{- if $paginator.HasPrev}} &middot; Seite {{ $paginator.PageNumber }}{{ end -}}
+{{ end }}
+{{ define "main" }}
+  <h1 class="post-title">
+    <a href="{{ .Permalink }}">
+      {{ .Title }}
+    </a>
+  </h1>
+  {{- with .Content }}
+  <article>
+    {{ . }}
+  </article>
+  {{- end }}
+  <div class="posts">
+    {{ $paginator := .Paginate (sort .Data.Pages ".Params.dateRecorded" "desc") }}
+    {{ range $paginator.Pages }}
+    <article class="audio">
+      {{with .Resources.GetMatch "header"}}
+      {{$header := .Fill "160x160"}}
+      {{$headerX2 := .Fill "320x320"}}
+      <img class="audio-image" src="{{ $header.RelPermalink }}" srcset="{{ $header.RelPermalink }} 1x, {{ $headerX2.RelPermalink }} 2x">
+      {{else}}
+      <svg class="audio-image" style="background-color: {{$.Scratch.Get "themeColor"}}" viewBox="0 -3 24 27">
+        <path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z" fill="white"/>
+      </svg>
+      {{end}}
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{- if isset .Params "subtitle" }}<span class="subtitle-list">{{ .Params.subtitle }}</span>{{ end -}}
+      <span class="meta">geschrieben:&nbsp;<time>{{ .Date.Format "02.01.2006" }}</time>{{ with .Params.dateRecorded }}, aufgenommen:&nbsp;<time>{{ dateFormat "02.01.2006" . }}</time>{{ end }}</span>
+      {{- with .Resources.GetMatch "audio" }}
+      <audio controls>
+        <source src="{{ .RelPermalink }}" type="{{.MediaType}}">
+      </audio>
+      <div style="clear:both"></div>
+      {{- end }}
+    </article>
+    {{ end }}
+
+    {{ template "_internal/pagination.html" . }}
+  </div>
+{{ end }}
