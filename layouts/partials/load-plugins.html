@@ -1,4 +1,14 @@
-{{- if not (.Page.Scratch.Get "loaded_nomnoml") -}}
+{{- if .Page.Store.Get "hasMermaid" -}}
+{{- $script := resources.Get "js/mermaid.min.js" -}}
+<script defer src="{{ $script.Permalink }}" onload="mermaid.initialize({startOnLoad: true, theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'neutral'});"></script>
+{{- end -}}
+
+{{- if .Page.Store.Get "hasKatex" -}}
+{{- $style := resources.Get "css/katex.min.css" -}}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+{{- end -}}
+
+{{- if .Page.Store.Get "hasNomnoml" -}}
 {{- $lodash := resources.Get "js/lodash.min.js" -}}
 <script defer src="{{ $lodash.Permalink }}"></script>
 {{- $dagre := resources.Get "js/dagre.min.js" -}}
@@ -17,5 +27,4 @@ function toggleNomnoml(id) {
     document.getElementById("aside").setAttribute("style", (window.iZoomCount > 0) ? "display: none;" : "");
 }
 </script>
-{{- .Page.Scratch.Set "loaded_nomnoml" true -}}
 {{- end -}}

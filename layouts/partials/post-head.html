@@ -1,25 +1,31 @@
 {{with .Resources.GetMatch "header" -}}
 {{- $header := .Fill "720x320" -}}
 {{- $headerX2 := .Fill "1440x640" -}}
-<div class="post-image"><img src="{{ $header.RelPermalink }}" srcset="{{ $header.RelPermalink }} 1x, {{ $headerX2.RelPermalink }} 2x"></div>
+<div class="post-image">
+  <img
+    src="{{ $header.RelPermalink }}"
+    srcset="{{ $header.RelPermalink }} 1x, {{ $headerX2.RelPermalink }} 2x"
+    style="background-color: {{index ($header.Colors) 0}};"
+    data-pagefind-meta="image[src]">
+</div>
 {{- end }}
 {{- $pageid := .File.UniqueID -}}
-<h1 class="post-title">
+<h1 class="post-title" data-pagefind-meta="title">
   <a href="{{ .Permalink }}">
     {{ .Title }}
   </a>
 </h1>
 {{ with .Params.subtitle }}
-<span class="post-subtitle">
+<span class="post-subtitle" data-pagefind-meta="Untertitel">
   {{.}}
 </span>
 {{end}}
 
 <span class="post-meta">
-  {{ if not .Date.IsZero }} {{ .Date.Format "02.01.2006"}} {{end}}
-  {{ with .Params.categories }} &middot; <a href="{{ $.Site.BaseURL }}categories/{{. | urlize}}">{{.}}</a> {{end}}
-  {{ with .Params.series }} &middot; <a href="{{ $.Site.BaseURL }}series/{{. | urlize}}">{{.}}</a> {{end}}
-  {{ if not .Date.IsZero }} &middot; {{.ReadingTime}} min {{end}}
+  {{ if not .Date.IsZero }}<span data-pagefind-meta="Datum" data-pagefind-ignore>{{ .Date.Format "02.01.2006"}}</span>{{end}}
+  {{ with .Params.categories }} &middot; <a href="{{ $.Site.BaseURL }}categories/{{. | urlize}}" data-pagefind-filter="Kategorie">{{.}}</a> {{end}}
+  {{ with .Params.series }} &middot; <a href="{{ $.Site.BaseURL }}series/{{. | urlize}}" data-pagefind-filter="Reihe">{{.}}</a> {{end}}
+  {{ if not .Date.IsZero }} &middot; <span data-pagefind-ignore>{{.ReadingTime}} min {{end}}</span>
   {{- with .Resources.GetMatch "audio" }} &middot; <input id="audio-toggle-{{ $pageid }}" class="hidden-checkbox" type="checkbox" ><label for="audio-toggle-{{ $pageid }}"><img src="/img/speaker.svg"></a></label>{{end}}
   {{- with .Resources.GetMatch "audio" }}
   <audio controls preload="none">

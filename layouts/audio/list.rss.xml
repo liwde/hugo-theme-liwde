@@ -9,27 +9,27 @@
    xmlns:media="https://search.yahoo.com/mrss/"
    xmlns:googleplay="https://www.google.com/schemas/play-podcasts/1.0">
   <channel>
-    <title>{{ .Site.Title }}</title>
-    <link>{{ .Site.BaseURL }}</link>
+    <title>{{ $.Site.Title }}</title>
+    <link>{{ $.Site.BaseURL }}</link>
     <atom:link href="{{ .Permalink }}index.html" rel="self" type="application/rss+xml" />
-    <language>{{ .Site.LanguageCode }}</language>
-    <lastBuildDate>{{ dateFormat "Mon, 2 Jan 2006 15:04:05 -0700" .Date }}</lastBuildDate>
-    <itunes:author>{{ .Site.Author.name }}</itunes:author>
-    <itunes:summary>{{ .Site.Params.podcastDescription | plainify }}</itunes:summary>
-    <description>{{ .Site.Params.podcastDescription | plainify }}</description>
+    <language>{{ $.Site.LanguageCode }}</language>
+    <lastBuildDate>{{ .Date.Format "Mon, 2 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
+    <itunes:author>{{ $.Site.Params.author.name }}</itunes:author>
+    <itunes:summary>{{ $.Site.Params.podcastDescription | plainify }}</itunes:summary>
+    <description>{{ $.Site.Params.podcastDescription | plainify }}</description>
     <itunes:owner>
-      <itunes:name>{{ .Site.Author.name }}</itunes:name>
-      <itunes:email>{{ .Site.Author.email }}</itunes:email>
+      <itunes:name>{{ $.Site.Params.author.name }}</itunes:name>
+      <itunes:email>{{ $.Site.Params.author.email }}</itunes:email>
     </itunes:owner>
     <image>
-      <url>{{.Site.BaseURL}}{{ .Site.Params.podcastImage }}</url>
-      <title>{{ .Site.Title }}</title>
-      <link>{{ .Site.BaseURL }}</link>
-      <description>{{ .Site.Params.podcastDescription | plainify }}</description>
+      <url>{{$.Site.BaseURL}}{{ $.Site.Params.podcastImage }}</url>
+      <title>{{ $.Site.Title }}</title>
+      <link>{{ $.Site.BaseURL }}</link>
+      <description>{{ $.Site.Params.podcastDescription | plainify }}</description>
     </image>
-    <itunes:image href="{{.Site.BaseURL}}{{ .Site.Params.podcastImage }}" />
-    <itunes:category text="{{ .Site.Params.podcastCategory }}">
-      <itunes:category text="{{ .Site.Params.podcastSubCategory }}" />
+    <itunes:image href="{{$.Site.BaseURL}}{{ $.Site.Params.podcastImage }}" />
+    <itunes:category text="{{ $.Site.Params.podcastCategory }}">
+      <itunes:category text="{{ $.Site.Params.podcastSubCategory }}" />
     </itunes:category>
     <itunes:block>no</itunes:block>
     <itunes:explicit>no</itunes:explicit>
@@ -37,7 +37,7 @@
     {{- range .Data.Pages -}}
     <item>
       <title>{{ title .Params.title }}{{ with .Params.subtitle }} ({{ . }}){{ end }}</title>
-      <itunes:author>{{ .Site.Author.name }}</itunes:author>
+      <itunes:author>{{ $.Site.Params.author.name }}</itunes:author>
       <itunes:summary>{{ .Summary | plainify }}</itunes:summary>
       {{- if .Params.showSummary }}
       {{ printf "<description><![CDATA[%s]]></description>" .Summary | safeHTML }}
@@ -53,7 +53,7 @@
       {{ with $audio }}<enclosure url="{{ .Permalink }}" type="{{ .MediaType }}" />{{ end }}
       <guid>{{ .Permalink }}</guid>
       <link>{{ .Permalink }}</link>
-      {{ with .Params.dateRecorded }}<pubDate>{{ dateFormat "Mon, 02 Jan 2006 15:04:05 -0700" . | safeHTML }}</pubDate>{{ end }}
+      {{ with .Params.dateRecorded }}<pubDate>{{ (time .).Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>{{ end }}
       {{ with $audio }}{{ with .Params }}{{ with .duration }}<itunes:duration>{{ . }}</itunes:duration>{{ end }}{{ end }}{{ end }}
     </item>
     {{ end }}

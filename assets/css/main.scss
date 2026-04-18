@@ -1,4 +1,4 @@
-$themeColor: {{ $.Scratch.Get "themeColor" | default "theme-base-09" }};
+@import "hugo:vars";
 
 @import "poole";
 @import "hyde";
@@ -13,3 +13,4 @@ $themeColor: {{ $.Scratch.Get "themeColor" | default "theme-base-09" }};
 @import "code";
 @import "cookieconsent.min";
 @import "custom";
+@import "pagefind";

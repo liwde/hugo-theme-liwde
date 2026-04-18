@@ -5,7 +5,8 @@
 {{- $resized := $original.Resize "640x" }}
 <figure class="photoset-item">
     <a href="{{$original.RelPermalink}}" data-lightbox="{{$scope}}" data-title="{{$caption}}">
-        <img src="{{ $resized.RelPermalink }}" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt"}}{{.}}{{else}}{{ .Get "caption" | markdownify | plainify }}{{ end }}"{{ end }} />
+        <img src="{{ $resized.RelPermalink }}" style="background-color: {{index ($resized.Colors) 0}};"
+        {{- if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt"}}{{.}}{{else}}{{ .Get "caption" | markdownify | plainify }}{{ end }}"{{ end }} />
     </a>
     {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
     <figcaption>

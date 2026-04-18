@@ -1,0 +1,14 @@
+{{- $style := resources.Get "css/littlefoot.css" -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+{{- $script := resources.Get "js/littlefoot.js" -}}
+<script defer src="{{ $script.RelPermalink }}" onload="initLittlefoot()"></script>
+<script>
+function initLittlefoot() {
+  littlefoot.littlefoot({
+    numberResetSelector: 'article.post',
+    allowDuplicates: true,
+    contentTemplate: `<aside class="littlefoot-footnote" id="fncontent:<% id %>"><div class="littlefoot-footnote__wrapper"><div class="littlefoot-footnote__content"><% content %></div></div><div class="littlefoot-footnote__tooltip"></div></aside>`,
+    buttonTemplate: `<button class="littlefoot-footnote__button littlefoot-footnote__button__ellipsis" id="<% reference %>" title="Siehe Fußnote <% number %>" aria-expanded="false"><svg role="img" aria-labelledby="title-<% reference %>" viewbox="0 0 31 6" preserveAspectRatio="xMidYMid"><title id="title-<% reference %>">Fußnote <% number %></title><circle r="3" cx="3" cy="3" fill="white"></circle><circle r="3" cx="15" cy="3" fill="white"></circle><circle r="3" cx="27" cy="3" fill="white"></circle></svg></button>`,
+  });
+}
+</script>

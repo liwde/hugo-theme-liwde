@@ -1,0 +1,17 @@
+{{- $themes := dict
+    "theme-base-08" "#ac4142"
+    "theme-base-09" "#d28445"
+    "theme-base-0a" "#f4bf75"
+    "theme-base-0b" "#90a959"
+    "theme-base-0c" "#75b5aa"
+    "theme-base-0d" "#6a9fb5"
+    "theme-base-0e" "#aa759f"
+    "theme-base-0f" "#8f5536"
+    -}}
+{{- $themeColor := index $themes $.Site.Params.theme -}}
+{{- $.Scratch.Set "themeColor" $themeColor -}}
+
+{{- $cssVars := dict "themeColor" $themeColor -}}
+{{- $cssOpts := (dict "outputStyle" "compressed" "vars" $cssVars ) -}}
+{{- $style := resources.Get "css/main.scss" | toCSS $cssOpts | fingerprint -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">

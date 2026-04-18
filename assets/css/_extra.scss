@@ -306,5 +306,17 @@ div.aside > nav ul {
   list-style: disc;
   font-size: 17px;
 }
-div.aside > nav ul a {
+
+/*
+ * Fix Dependencies
+ */
+@media screen and (prefers-color-scheme: dark) {
+  .littlefoot-footnote__content, .littlefoot-footnote__content * {
+    color:#515151;
+  }
+}
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-right: -1rem !important;
 }

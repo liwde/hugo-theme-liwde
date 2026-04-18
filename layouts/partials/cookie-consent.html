@@ -1,5 +1,5 @@
 {{- $script := resources.Get "js/cookieconsent.min.js" -}}
-<script defer src="{{ $script.Permalink }}"></script>
+<script defer src="{{ $script.RelPermalink }}"></script>
 <script>
 window.addEventListener("load", function() {
   window.cookieconsent.initialise({
@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
       }
     },
     "theme": "edgeless",
-    {{ if ne .Site.Params.cookieConsentOptIn false }}"type": "opt-in",{{ end }}
+    {{ if ne $.Site.Params.cookieConsentOptIn false }}"type": "opt-in",{{ end }}
     onStatusChange: function(status) {
       if (this.hasConsented()) {
         _paq.push(['rememberConsentGiven']);
@@ -23,13 +23,13 @@ window.addEventListener("load", function() {
       }
     },
     "content": {
-      "message": "{{ .Site.Params.cookieConsentMessage }}",
+      "message": "{{ $.Site.Params.cookieConsentMessage }}",
       "allow": "OK",
       "dismiss": "OK",
       "deny": "Ablehnen",
       "policy": "Tracking",
       "link": "Mehr Informationen",
-      "href": "{{ .Site.Params.cookieConsentPolicyLink }}"
+      "href": "{{ $.Site.Params.cookieConsentPolicyLink }}"
     }
   });
 

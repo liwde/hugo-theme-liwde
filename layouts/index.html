@@ -1,11 +1,11 @@
 {{ define "title" }}
-  {{- .Site.Title -}}
-  {{- $paginator := .Paginate (where .Site.RegularPages "Type" "posts") -}}
+  {{- $.Site.Title -}}
+  {{- $paginator := .Paginate (where $.Site.RegularPages "Type" "posts") -}}
   {{- if $paginator.HasPrev}} &middot; Seite {{ $paginator.PageNumber }}{{ end -}}
 {{ end }}
 {{ define "main" }}
   <div class="posts">
-    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts") }}
+    {{ $paginator := .Paginate (where $.Site.RegularPages "Type" "posts") }}
     {{ range $paginator.Pages }}
     <article class="post">
       {{ partial "post-head.html" . }}

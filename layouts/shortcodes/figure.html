@@ -27,7 +27,7 @@
     {{- else }}
         <a href="{{ $original.RelPermalink }}" data-lightbox="{{ $scope | plainify }}" data-title="{{ $caption | plainify }}">
     {{- end }}
-    <img src="{{ $resized.RelPermalink }}" srcset="{{ $resized.RelPermalink }} 1x, {{ $resizedX2.RelPermalink }} 2x"
+    <img src="{{ $resized.RelPermalink }}" srcset="{{ $resized.RelPermalink }} 1x, {{ $resizedX2.RelPermalink }} 2x" style="background-color: {{index ($resized.Colors) 0}};"
          {{- if or (.Get "alt") (.Get "caption") }}
          alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
          {{- end -}}

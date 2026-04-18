@@ -8,7 +8,7 @@
 {{with .Params.endmatterText}}{{ $.Scratch.Set "endmatter" "show" }}{{end}}
 
 {{if eq ($.Scratch.Get "endmatter") "show"}}
-<div class="footnotes">
+<div class="footnotes" data-pagefind-ignore>
   <hr>
   {{range .Resources.ByType "image"}}
     {{with .Params}}
