@@ -1,10 +1,10 @@
-name = "liwde"
+name = "hugo-theme-liwde"
 license = "MIT"
-licenselink = "https://github.com/spf13/hyde/blob/master/LICENSE.md"
+licenselink = "https://github.com/liwde/hugo-theme-liwde/blob/master/LICENSE.md"
 description = "An elegant open source and mobile first theme"
 tags = ["blog"]
 features = ["blog", "themes"]
-min_version = 0.52
+min_version = 0.160
 
 [author]
     name = "liwde"
